@@ -1,0 +1,54 @@
+/* start time 4:30 */
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+/* main grid */
+.register-grid {
+  display: grid;
+  height: 100vh;
+  grid-template-areas:
+    "Register Sidebar"
+    "Login Sidebar";
+}
+
+h4 {
+  margin-bottom: 1em;
+}
+
+.formTitle {
+  margin-bottom: 1em;
+}
+
+.form-field {
+  margin-bottom: 1em;
+}
+
+.register-form {
+  grid-area: Register;
+  padding: 2em;
+}
+.side-bar {
+  grid-area: Sidebar;
+  padding: 2em;
+}
+.user-login {
+  grid-area: Login;
+  padding: 2em;
+}
+
+/* hide doctor form on intial render */
+.doctor-form.hide {
+  display: none;
+}
+
+/* Apply backgrounds */
+.register-form {
+  background: url("../img/register-bg.png");
+}
+.side-bar {
+  background: #3d3d3d;
+}
