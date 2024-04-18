@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Appointment page - Patient view</title>
+    <link rel="stylesheet" href="./css/appointment.css" />
+    <!-- ===================================================================
+          Resource: https://techareatutorials.com/how-to-use-javascript-fullcalendar/
+    ========================================================================-->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.css"
+    />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/fullcalendar/3.4.0/fullcalendar.min.js"></script>
+  </head>
+  <body>
+    <div class="top-row">
+      <div class="book-btn">
+        <button class="Book_Appointment_btn" onclick="{fetchTimeSlots}">
+          Book Appointment
+        </button>
+      </div>
+
+      <h3 class="patient_name">User</h3>
+    </div>
+
+    <main class="main-container">
+      <!-- notitifaction message box  "displays real-time notifcations to user"-->
+      <div class="noti-box"></div>
+      <!-- calendar component -->
+      <div class="calendar" id="calendar"></div>
+    </main>
+  </body>
+</html>
+<!-- customizing calendar using full calendar Api: this loads the calendar with the current patients appointments-->
+<script>
+  var patient_appt = [];
+  /*
+    patient_appt data will look like this
+
+    patient_appt = [{title: Doctor 1
+                    start: "2024-04-17T08:00",
+                    end: "2024-04-17T12:00", },
+                    {title: Doctor 1
+                    start: "2024-04-24T08:00",
+                    end: "2024-04-24T12:00", },
+                  ]
+  */
+
+  // fetch patient's fixed appointments from endpoint 'patientID/appointment'
+  function getAppointments() {
+    fetch("http://localhost:8080/bookingApp/patientID/appointment", {
+      method: "GET",
+    })
+      //handle the response, includes check for errors
+      .then(handleResponse)
+      .then((data) => {
+        patient_appt = data;
+      })
+      .catch((err) => {
+        console.error("Problem with fetching patients appointments, ", err);
+      });
+  }
+
+  // then pass the patient_appt array to the fullCalendar events key to visually display the appointment slots on calendar
+
+  $(document).ready(function () {
+    $("#calendar").fullCalendar({
+      height: "111px",
+      header: {
+        left: "month, agendaWeek, agendaDay, list",
+        center: "title",
+        right: "today prev next",
+      },
+      //events: patient_appt
+
+      /* down below are events are for testing purposes*/
+      events: [
+        {
+          title: "Doctor 1",
+          start: "2024-04-17T08:00",
+          end: "2024-04-17T12:00",
+        },
+        {
+          title: "Doctor 1",
+          start: "2024-04-25T08:00",
+          end: "2024-04-25T12:00",
+        },
+        {
+          title: "Doctor 1",
+          start: "2024-04-30T08:00",
+          end: "2024-04-30T12:00",
+        },
+      ],
+      eventClick: function (calEvent, jsEvent, view) {
+        alert("Event: " + calEvent.title);
+        jsEvent.preventDefault();
+        return false;
+      },
+    });
+  });
+</script>
