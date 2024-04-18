@@ -32,6 +32,10 @@ function postData(url, formData) {
     .then((data) => {
       alert("Registration successful!");
       // add ui to show user that registration is successful
+
+      //redirect user to the appointment page on successful registration
+      window.location.href =
+        "http://localhost:8080/bookingApp/appointment-pat.html";
     })
     .catch((err) => {
       alert("Error during registration");
