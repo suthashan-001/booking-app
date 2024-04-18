@@ -13,6 +13,7 @@
   grid-template-areas:
     "Register Sidebar"
     "Login Sidebar";
+  grid-template-columns: 5fr 1fr;
 }
 
 h4 {
@@ -30,6 +31,17 @@ h4 {
 .register-form {
   grid-area: Register;
   padding: 2em;
+  position: relative;
+}
+.patient-form {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.register-btn-container {
+  position: absolute;
+  bottom: 11%;
 }
 .side-bar {
   grid-area: Sidebar;
@@ -47,8 +59,102 @@ h4 {
 
 /* Apply backgrounds */
 .register-form {
-  background: url("../img/register-bg.png");
+  background: #8fdae9;
+  padding: 5em;
+  padding-bottom: 3em;
 }
 .side-bar {
   background: #3d3d3d;
 }
+
+.misc-input {
+  margin-top: 3em;
+}
+.misc-input input {
+  margin-right: 0.75em;
+}
+
+.perfered-doctor-container {
+  margin-top: 2em;
+  background: rgba(255, 255, 255, 0.509);
+  padding: 3em;
+  margin-left: 5em;
+}
+
+/* User login sytle */
+.user-login-container {
+  display: flex;
+  flex-direction: row;
+  padding: 3em;
+  padding-bottom: 0;
+  margin-bottom: 0;
+  justify-content: space-evenly;
+}
+.user-login {
+  margin-left: 5em;
+  padding-left: 0;
+  padding-bottom: 0;
+}
+.section-title {
+  letter-spacing: 1.5px;
+  font-style: italic;
+}
+
+/* sidebar styling */
+.icon-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  letter-spacing: 1px;
+  font-weight: 400;
+  margin-bottom: 88px;
+}
+/* icon styling */
+.active {
+  color: #09d0f8;
+}
+.active-text {
+  color: white;
+}
+.sidebar-icon {
+  font-size: 44px;
+  margin-bottom: 8px;
+}
+.bg-box {
+  background: rgba(5, 5, 5, 0.272);
+  padding: 1.5em;
+  border-radius: 11px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.bg-box:hover {
+  background: rgba(5, 5, 5, 0.5);
+}
+.bg-box:hover svg {
+  color: white;
+}
+
+/* button styles */
+.register-btn,
+.sign-in-btn {
+  display: inline-block;
+  background: rgb(250, 250, 250);
+  font-size: 18px;
+  padding: 0.5em 1.5em;
+  letter-spacing: 1.5px;
+  border-radius: 22px;
+  font-weight: 700;
+  cursor: pointer;
+}
+.sign-in-btn {
+  margin-top: -1em;
+}
+.register-btn:hover,
+.sign-in-btn:hover,
+.register-btn:focus,
+.sign-in-btn:focus {
+  scale: 1.123;
+}
+
+/* patient/doctor side tab */
